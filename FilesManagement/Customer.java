@@ -19,6 +19,10 @@ public class Customer {
 		this.aircraft.add(aircraft);
 	}
 	
+	public void release(){
+		aircraft = new ArrayList<Aircraft>();
+	}
+	
 	public static Customer getCustomerInst(){
 	      return customer;
 	   }
