@@ -28,7 +28,6 @@ public class FlightSimulation {
 		
 		if(selectedValue == JFileChooser.APPROVE_OPTION){
 			//System.out.println(j.getSelectedFile());
-			String rootFolder = "Files/";
 			String fileURL = null;
 			
 			File dir = new File(j.getSelectedFile().getAbsolutePath());
@@ -52,7 +51,7 @@ public class FlightSimulation {
 					 System.out.print(file.getName()+" ");
 					 txtReader = new TxtHandlerClass();
 					 testObj = txtReader.txtReader(fileURL);
-
+					 
 				 }else{
 					 System.out.println("No valid files");
 				 }

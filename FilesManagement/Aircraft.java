@@ -5,8 +5,9 @@ import java.util.ArrayList;
 public class Aircraft {
 
 	private ArrayList<Products> products;
+	private static Aircraft aircraft = new Aircraft();
 	
-	public Aircraft(){
+	private Aircraft(){
 		products = new ArrayList<Products>();
 	}
 
@@ -24,5 +25,13 @@ public class Aircraft {
 		products.remove(products.size()-1);
 		return temp;
 	}
+	
+	public void release(){
+		products = new ArrayList<Products>();
+	}
+	
+	public static Aircraft getAircraftInst(){
+	      return aircraft;
+	   }
 	
 }

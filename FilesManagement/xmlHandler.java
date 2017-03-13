@@ -32,11 +32,11 @@ public class xmlHandler {
 			  printNote(doc.getChildNodes(), false);
 			  aircraft.popProduct();
 		  }
+		  
 		  customer.setAircraft(aircraft);
 		  System.out.println("Size Aircraft: "+aircraft.getProducts().size());
 		  //System.out.println("Size Prod Subs: "+prodObj.getPublish().get(2));
 
-		  
 	  } catch (Exception e) {
 		  System.out.println("Error: "+e.getMessage());
 	  }
@@ -61,11 +61,14 @@ public class xmlHandler {
 				String nodeName = tempNode.getNodeName();
 				
 				if(count == 0 && !tempNode.hasAttributes()){
-					customer = new Customer();
+					//customer = new Customer();
+					customer = Customer.getCustomerInst();
 				}
 				
 				if(count == 1 && !tempNode.hasAttributes()){
-					aircraft = new Aircraft();
+					
+					aircraft = Aircraft.getAircraftInst();
+					aircraft.release();
 				}
 				
 				if (tempNode.hasAttributes()) {

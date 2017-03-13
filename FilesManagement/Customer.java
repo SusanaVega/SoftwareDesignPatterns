@@ -6,8 +6,9 @@ public class Customer {
 
 	private ArrayList<Aircraft> aircraft;
 	//private String cutomerName;
+	private static Customer customer = new Customer();
 	
-	public Customer(){
+	private Customer(){
 		aircraft = new ArrayList<Aircraft>();
 	}
 	
@@ -17,6 +18,10 @@ public class Customer {
 	public void setAircraft(Aircraft aircraft) {
 		this.aircraft.add(aircraft);
 	}
+	
+	public static Customer getCustomerInst(){
+	      return customer;
+	   }
 
 	
 }
