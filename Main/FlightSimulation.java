@@ -3,17 +3,20 @@ package Main;
 import java.beans.XMLDecoder;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.Reader;
 import java.util.Scanner;
 
 import javax.swing.JFileChooser;
 
 import FilesManagement.Customer;
 import FilesManagement.xmlHandler;
+import TxtHandler.TxtHandlerClass;
 
 public class FlightSimulation {
 
 	static xmlHandler xmlReader;
 	static Customer customer = null;
+	static TxtHandlerClass txtReader;
 	
 	public static void main(String[] args) throws FileNotFoundException{
 		
@@ -42,9 +45,16 @@ public class FlightSimulation {
 				  }
 				 if (file.isFile()&&(file.getName().substring(file.getName().lastIndexOf('.')+1).equals("txt"))) {
 					 // Code to be adapted to run txt object creation
+					 
+					 fileURL = fixedPath+"/"+file.getName();
+					 System.out.print(file.getName()+" ");
+					 txtReader = new TxtHandlerClass();
+					 txtReader.txtReader(fileURL);
 					 //fileURL = rootFolder+file.getName();
 					 //xmlReader = new xmlHandler();
 					 //customer = xmlReader.xmlReader(fileURL);
+				 }else{
+					 System.out.println("No valid files");
 				 }
 			}
 		}else{
