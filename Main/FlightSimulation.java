@@ -10,6 +10,7 @@ import javax.swing.JFileChooser;
 
 import FilesManagement.Customer;
 import FilesManagement.xmlHandler;
+import TxtHandler.Flight_Phase;
 import TxtHandler.TxtHandlerClass;
 
 public class FlightSimulation {
@@ -17,6 +18,7 @@ public class FlightSimulation {
 	static xmlHandler xmlReader;
 	static Customer customer = null;
 	static TxtHandlerClass txtReader;
+	static Flight_Phase testObj;
 	
 	public static void main(String[] args) throws FileNotFoundException{
 		
@@ -49,10 +51,8 @@ public class FlightSimulation {
 					 fileURL = fixedPath+"/"+file.getName();
 					 System.out.print(file.getName()+" ");
 					 txtReader = new TxtHandlerClass();
-					 txtReader.txtReader(fileURL);
-					 //fileURL = rootFolder+file.getName();
-					 //xmlReader = new xmlHandler();
-					 //customer = xmlReader.xmlReader(fileURL);
+					 testObj = txtReader.txtReader(fileURL);
+
 				 }else{
 					 System.out.println("No valid files");
 				 }
