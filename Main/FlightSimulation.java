@@ -1,13 +1,14 @@
 package Main;
 
-import java.beans.XMLDecoder;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.Reader;
-import java.util.Scanner;
-
 import javax.swing.JFileChooser;
 
+import FilesManagement.Products;
+import FilesManagement.Publish;
+import FilesManagement.Subscribe;
+import Factory.PublishIterator;
+import Factory.SubscribeIterator;
 import FilesManagement.Customer;
 import FilesManagement.xmlHandler;
 import TxtHandler.Flight_Phase;
@@ -56,6 +57,22 @@ public class FlightSimulation {
 					 System.out.println("No valid files");
 				 }
 			}
+			
+			
+			for(int i=0; i<customer.getAircraft().get(0).getProducts().size();i++)
+			{
+				Products productRepository = customer.getAircraft().get(0).getProducts().get(i);
+				System.out.println("Product : " + productRepository.getProductID());
+				for(SubscribeIterator iter = productRepository.getSubscribeIterator(); iter.hasNext();){
+					Subscribe S = (Subscribe) iter.next();;
+			        System.out.println("Subscribe Name : " + S.getName());
+			      } 
+				for(PublishIterator iter = productRepository.getPublishIterator(); iter.hasNext();){
+					Publish P = (Publish) iter.next();;
+			        System.out.println("Publish Name : " + P.getName());
+			      } 
+			}			
+			
 		}else{
 			System.out.println("Please execute the application to select a FOLDER...");
 		}

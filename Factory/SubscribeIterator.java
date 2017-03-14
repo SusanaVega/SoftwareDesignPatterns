@@ -1,5 +1,6 @@
+package Factory;
 
-public interface PublishIterator {
+public interface SubscribeIterator {
 	
 	public boolean hasNext();
 	public Object next();

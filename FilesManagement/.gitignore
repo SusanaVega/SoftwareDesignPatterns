@@ -4,3 +4,5 @@
 /Publish.class
 /Subscribe.class
 /xmlHandler.class
+/Products$pubIterator.class
+/Products$subsIterator.class
