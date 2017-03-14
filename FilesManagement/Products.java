@@ -2,15 +2,16 @@ package FilesManagement;
 
 import java.util.ArrayList;
 
-import Factory.ProductsContainer;
-import Factory.PublishIterator;
-import Factory.SubscribeIterator;
+import iterator.ProductsContainer;
+import iterator.PublishIterator;
+import iterator.SubscribeIterator;
 
 public class Products implements ProductsContainer{
 
 	private ArrayList<Subscribe> subscribe;
 	private ArrayList<Publish> publish;
 	private int productID;
+	private String name;
 	
 	public Products(){
 		subscribe = new ArrayList<Subscribe>();
@@ -43,6 +44,13 @@ public class Products implements ProductsContainer{
 	public SubscribeIterator getSubscribeIterator() {
 	      return new subsIterator();
 	   }
+public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 private class pubIterator implements PublishIterator {
 		
 		int index = 0;

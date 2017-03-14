@@ -7,9 +7,9 @@ public class Subscribe {
 	private String Name = "";
 	private String Origin = "";
 	private String Type = "";
-	private String Max = "";
-	private String Min = "";
-	private String Default = "";	
+	private int Max = 0;
+	private int Min = 0;
+	private int Default = 0;	
 	
 
 	public Subscribe() { //constructor
@@ -47,32 +47,32 @@ public class Subscribe {
 	}
 
 
-	public String getMax() {
+	public int getMax() {
 		return Max;
 	}
 
 
-	public void setMax(String max) {
+	public void setMax(int max) {
 		Max = max;
 	}
 
 
-	public String getMin() {
+	public int getMin() {
 		return Min;
 	}
 
 
-	public void setMin(String min) {
+	public void setMin(int min) {
 		Min = min;
 	}
 
 
-	public String getDefault() {
+	public int getDefault() {
 		return Default;
 	}
 
 
-	public void setDefault(String default1) {
+	public void setDefault(int default1) {
 		Default = default1;
 	}
 

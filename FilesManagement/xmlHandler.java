@@ -1,8 +1,6 @@
 package FilesManagement;
 
 import java.io.File;
-import java.util.Arrays;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
@@ -34,7 +32,7 @@ public class xmlHandler {
 		  }
 		  
 		  customer.setAircraft(aircraft);
-		  System.out.println("Size Aircraft: "+aircraft.getProducts().size());
+		  //System.out.println("Size Aircraft: "+aircraft.getProducts().size());
 		  //System.out.println("Size Prod Subs: "+prodObj.getPublish().get(2));
 
 	  } catch (Exception e) {
@@ -83,6 +81,7 @@ public class xmlHandler {
 						if(node.getNodeName().equals("ProductID")){
 
 							prodObj = new Products();
+							prodObj.setName(nodeName);
 							prodObj.setProductID(Integer.parseInt(node.getNodeValue()));
 
 						}
@@ -146,13 +145,13 @@ public class xmlHandler {
 			  subscribe.setType(nodeValue);
 			  break;
 		  case "Max":
-			  subscribe.setMax(nodeValue);
+			  subscribe.setMax(Integer.parseInt(nodeValue));
 			  break;
 		  case "Min":
-			  subscribe.setMin(nodeValue);
+			  subscribe.setMin(Integer.parseInt(nodeValue));
 			  break;
 		  case "Default":
-			  subscribe.setDefault(nodeValue);
+			  subscribe.setDefault(Integer.parseInt(nodeValue));
 			  break;
 		  default:
 			System.out.println("Subscribe - No case for: " + nodeName + " value: " + nodeValue);

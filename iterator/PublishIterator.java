@@ -1,4 +1,4 @@
-package Factory;
+package iterator;
 
 public interface PublishIterator {
 	
