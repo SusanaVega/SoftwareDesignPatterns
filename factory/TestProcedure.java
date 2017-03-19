@@ -1,7 +1,7 @@
 package factory;
 
+import FilesManagement.Flight_Phase;
 import FilesManagement.Subscribe;
-import TxtHandler.Flight_Phase;
 
 public interface TestProcedure {
    void evaluate(Subscribe s, Flight_Phase f);

@@ -1,4 +1,4 @@
-package TxtHandler;
+package FilesManagement;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -21,16 +21,22 @@ public class TxtHandlerClass {
 					String labelContent = string.substring(string.indexOf("[")+1,string.indexOf("]"));
 					String labelValue = string.substring(string.indexOf("=")+1,string.length());
 					switch(labelContent){
-						case "PRE_FLIGHT"
-								+ "": break;
-						case "PRODUCT_CONFIGURATION": setProd_Config(labelValue) ;break;
+						case "PRE_FLIGHT": 
+							break;
+						case "PRODUCT_CONFIGURATION": 
+							setProd_Config(labelValue);
+							break;
 						case "FLIGHT_PHASE": 
 							if (FP != null)
 								FPArray.add(FP);
 							FP = new Flight_Phase(); 
-							FP.setPhase_Name(string.substring(string.indexOf("=")+1, string.length()));break;
-						case "FLIGHT_PARAMETER": SetValue(FP,labelValue); break;
-						default : break;
+							FP.setPhase_Name(string.substring(string.indexOf("=")+1, string.length()));
+							break;
+						case "FLIGHT_PARAMETER": 
+							SetValue(FP,labelValue); 
+							break;
+						default : 
+							break;
 					}
 				}
 				FPArray.add(FP);

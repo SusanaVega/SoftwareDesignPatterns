@@ -1,7 +1,7 @@
 package factory;
 
+import FilesManagement.Flight_Phase;
 import FilesManagement.Subscribe;
-import TxtHandler.Flight_Phase;
 
 public class TestProcedureGPS implements TestProcedure{
 	

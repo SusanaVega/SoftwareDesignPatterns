@@ -1,4 +1,4 @@
-package TxtHandler;
+package FilesManagement;
 
 public class Flight_Phase {
 	private String Phase_Name = "";
