@@ -5,6 +5,8 @@ import java.io.FileNotFoundException;
 
 import javax.swing.JFileChooser;
 
+import Adapter.ProxyWeatherTest1;
+import Adapter.WeatherTest;
 import FilesManagement.*;
 import factory.TestProcedure;
 import factory.TestProcedureFactory;
@@ -54,13 +56,12 @@ public class FlightSimulation {
 								xmlReader = new xmlHandler();
 								System.out.println("Processing Input File " + file1.getName());
 								customer = xmlHandler.xmlReader(fileURL);
+								System.out.println("\nCustomer: " + customer.getCutomerName());
 								executeTest();
 								System.out.println("Finished processing Test input file " + file1.getName());
+								
 							}
-							else
-							{
-								System.out.println("No suitable test case for "+file1.getName()+ " file");
-							}
+							
 						}
 					}
 					System.out.println("Finishing simulation " + file.getName());
@@ -76,21 +77,29 @@ public class FlightSimulation {
 	}
 	public static void executeTest()
 	{
-		System.out.println("\nFlight type : " + TestCase.getFlightType());
+	      WeatherTest weatherTest;
+
+	      //image will be loaded from disk
+	      //image.display(); 
+		System.out.println("Flight type : " + TestCase.getFlightType());
 		System.out.println("Product Configuration : " + TestCase.getProductConfiguration());
 		System.out.println("Preflight: Latitude Change : " + TestCase.getPreflight().getPreflight_Latitude_Change());
 		System.out.println("Preflight: Longitude Change : " + TestCase.getPreflight().getPreflight_Longitude_Change());
 		System.out.println("Preflight: Weather : " + TestCase.getPreflight().getPreflight_Weather());
+		
 		for(int index=0; index<customer.getAircraft().get(0).getProducts().size();index++)
-		{				
+		{	
+
 			//Current product
 			Products productRepository = customer.getAircraft().get(0).getProducts().get(index);
 			System.out.println("\nProduct: "+ productRepository.getName());			
 			
 			for(int testIndex=0;testIndex<TestCase.getFlight_Phases().size();testIndex++){
+
 				//Creation of test factory according with the product name
 				TestProcedureFactory testFactory = new TestProcedureFactory();
 				TestProcedure test1 = testFactory.getResults(productRepository.getName());
+				
 				//Compare product subscribe against flight parameter in test case file
 				System.out.println("Phase : " + TestCase.getFlight_Phases().get(testIndex).getPhase_Name());
 				System.out.println("Aircraft Maneuver : " + TestCase.getFlight_Phases().get(testIndex).getAircraft_Maneuver());
@@ -102,8 +111,21 @@ public class FlightSimulation {
 					FP = TestCase.getFlight_Phases().get(testIndex);
 					test1.evaluate(S, FP);
 				}
+				TestCase.getFlight_Phases().get(testIndex).unSettignArrays();
+				
+				TestCase.getFlight_Phases().get(testIndex).populateArrayList();
+				weatherTest = new ProxyWeatherTest1(TestCase.getPreflight().getPreflight_Weather(), TestCase.getFlight_Phases().get(testIndex).getAircraft_Maneuver(), customer.getCutomerName(), TestCase.getFlight_Phases().get(testIndex));
+				weatherTest.runTestWeather();
+				//TestCase.getFlight_Phases().get(testIndex).clearParameters();
+				
 			} 
-		}			
+			
+		}
+		for(int k = 0; k < TestCase.getFlight_Phases().size();k++){
+			TestCase.getFlight_Phases().get(k).clearParameters();
+			
+		}
+		
 	}
 
 }

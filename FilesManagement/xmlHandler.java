@@ -61,6 +61,7 @@ public class xmlHandler {
 				if(count == 0 && !tempNode.hasAttributes()){
 					//customer = new Customer();
 					customer = Customer.getCustomerInst();
+					customer.setCutomerName(tempNode.getNodeName());
 					customer.release();
 				}
 				
