@@ -3,17 +3,16 @@ package FilesManagement;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class TxtHandlerClass {
-	
-	private String Prod_Config = "";
 
-	public ArrayList<Flight_Phase> txtReader(String file) {
+	public TestCase txtReader(String file) {
 			String string;
 			FileReader f;
+			TestCase TC = null;
+			Preflight PF = new Preflight();
 			Flight_Phase FP = null;
-			ArrayList<Flight_Phase> FPArray = new ArrayList<Flight_Phase>(); 
+			//ArrayList<Flight_Phase> FPArray = new ArrayList<Flight_Phase>(); 
 			try {
 				f = new FileReader(file);
 				BufferedReader b = new BufferedReader(f);
@@ -21,34 +20,49 @@ public class TxtHandlerClass {
 					String labelContent = string.substring(string.indexOf("[")+1,string.indexOf("]"));
 					String labelValue = string.substring(string.indexOf("=")+1,string.length());
 					switch(labelContent){
-						case "PRE_FLIGHT": 
+						case "FLIGHT_TYPE": 
+							TC = new TestCase();
+							TC.setFlightType(labelValue);
+							break;
+						case "PRE_FLIGHT":
+							SetPreflightParameterValue(PF,labelValue);
 							break;
 						case "PRODUCT_CONFIGURATION": 
-							setProd_Config(labelValue);
+							TC.setProductConfiguration(labelValue);
 							break;
 						case "FLIGHT_PHASE": 
 							if (FP != null)
-								FPArray.add(FP);
+								TC.setFlight_Phases(FP);
 							FP = new Flight_Phase(); 
 							FP.setPhase_Name(string.substring(string.indexOf("=")+1, string.length()));
 							break;
-						case "FLIGHT_PARAMETER": 
-							SetValue(FP,labelValue); 
+						case "AIRCRAFT_MANEUVER": 
+							if (FP != null)
+								FP.setAircraft_Maneuver(string.substring(string.indexOf("=")+1, string.length()));
+							else
+								System.out.println("Flight phase not detected for AIRCRAFT_MANEUVER");
+							break;
+						case "FLIGHT_PARAMETER":
+							if (FP != null)
+								SetFlightParameterValue(FP,labelValue); 
+							else
+								System.out.println("Flight phase not detected for FLIGHT_PARAMETER");
 							break;
 						default : 
 							break;
 					}
 				}
-				FPArray.add(FP);
+				TC.setFlight_Phases(FP);
+				TC.setPreflight(PF);
 				b.close();
 	        
 			} catch (IOException e) {
 				System.out.println("Something failed");
 			}
 		//}
-			return FPArray;
+			return TC;
 	}
-	private static void SetValue(Flight_Phase obj, String value)
+	private static void SetFlightParameterValue(Flight_Phase obj, String value)
 	{
 		String attributeName = value.substring(0,value.indexOf(":"));
 		String attibuteValue = value.substring(value.indexOf(":")+1,value.length());
@@ -59,13 +73,19 @@ public class TxtHandlerClass {
 		case "WindSpeed": obj.setWindSpeed(Integer.parseInt(attibuteValue));break;
 		case "Latitude_Change": obj.setLatitude_Change(Float.parseFloat(attibuteValue));break;
 		case "Longitude_Change": obj.setLongitude_Change(Float.parseFloat(attibuteValue));break;
-		default: System.out.println("Pamameter " + attributeName + " not supported");
+		default: System.out.println("Parameter " + attributeName + " not supported");
 		}
 	}
-	public String getProd_Config() {
-		return Prod_Config;
-	}
-	public void setProd_Config(String prod_Config) {
-		Prod_Config = prod_Config;
+	private static void SetPreflightParameterValue(Preflight obj, String value)
+	{
+		String attributeName = value.substring(0,value.indexOf(":"));
+		String attibuteValue = value.substring(value.indexOf(":")+1,value.length());
+		switch(attributeName)
+		{
+		case "Latitude_Change": obj.setPreflight_Latitude_Change(Float.parseFloat(attibuteValue));break;
+		case "Longitude_Change": obj.setPreflight_Longitude_Change(Float.parseFloat(attibuteValue));break;
+		case "Weather": obj.setPreflight_Weather(attibuteValue);break;
+		default: System.out.println("Preflight parameter " + attributeName + " not supported");
+		}
 	}
 }

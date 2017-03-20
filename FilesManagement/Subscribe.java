@@ -1,21 +1,16 @@
 package FilesManagement;
 
-public class Subscribe {
-	
-	//singleton con parámetros no es singleton 
+public class Subscribe{
 	
 	private String Name = "";
 	private String Origin = "";
 	private String Type = "";
 	private int Max = 0;
 	private int Min = 0;
-	private int Default = 0;	
-	
-
-	public Subscribe() { //constructor
-		// TODO Auto-generated constructor stub
-	}
-
+	private int Default = 0;
+	private String Operation = "";
+	private String Operand1 = "";
+	private String Operand2 = "";
 
 	public String getName() {
 		return Name;
@@ -74,6 +69,30 @@ public class Subscribe {
 
 	public void setDefault(int default1) {
 		Default = default1;
+	}
+
+	public String getOperation() {
+		return Operation;
+	}
+
+	public void setOperation(String operation) {
+		Operation = operation;
+	}
+
+	public String getOperand1() {
+		return Operand1;
+	}
+
+	public void setOperand1(String operand1) {
+		Operand1 = operand1;
+	}
+
+	public String getOperand2() {
+		return Operand2;
+	}
+
+	public void setOperand2(String operand2) {
+		Operand2 = operand2;
 	}
 
 }

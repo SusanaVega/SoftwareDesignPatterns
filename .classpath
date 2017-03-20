@@ -2,6 +2,6 @@
 <classpath>
 	<classpathentry kind="src" path=""/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="D:/Users/204069337/Documents/ACE/Material/23 Software pattern 2/Homework/DesignPatternsHomeworkFiles/LegacyWeatherModule.jar"/>
+	<classpathentry kind="lib" path="D:/MyWork/Edison/SW_Patterns2/SW_Patterns2_Homework/SoftwareDesignPatterns/lib/LegacyWeatherModule.jar"/>
 	<classpathentry kind="output" path=""/>
 </classpath>

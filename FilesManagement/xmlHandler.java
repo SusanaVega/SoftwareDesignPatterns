@@ -86,9 +86,7 @@ public class xmlHandler {
 
 						}
 					}else if(nodeName.equals("Subscribe")){
-						
 						Subscribe subObj = new Subscribe();
-
 							for (int i = 0; i < nodeMap.getLength(); i++) {
 								Node node = nodeMap.item(i);
 								String nodeAttname = node.getNodeName();
@@ -119,9 +117,6 @@ public class xmlHandler {
 				else{
 					productIDDef = false;
 				}
-				//System.out.println("Node Name =" + tempNode.getNodeName() + " [CLOSE]");
-				//System.out.println("Size Prod Subscribe: " + prodObj.getSubscribe().size());	
-				//System.out.println("Size Prod Publish: " + prodObj.getPublish().size());	
 			}
 			
 		
@@ -149,6 +144,15 @@ public class xmlHandler {
 			  break;
 		  case "Min":
 			  subscribe.setMin(Integer.parseInt(nodeValue));
+			  break;
+		  case "Operand1":
+			  subscribe.setOperand1(nodeValue);
+			  break;
+		  case "Operand2":
+			  subscribe.setOperand2(nodeValue);
+			  break;
+		  case "Operation":
+			  subscribe.setOperation(nodeValue);
 			  break;
 		  case "Default":
 			  subscribe.setDefault(Integer.parseInt(nodeValue));
