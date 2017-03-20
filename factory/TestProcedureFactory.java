@@ -18,6 +18,8 @@ public class TestProcedureFactory {
       else if(TestProcedureType.equalsIgnoreCase("Engine")){
           return new TestProcedureEngine();
        }
+      else if (TestProcedureType.equalsIgnoreCase("DataRecorder"))
+    	  return new TestProcedureDataRecorder();
       
       return null;
    }

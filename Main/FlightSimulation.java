@@ -2,20 +2,12 @@ package Main;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 
 import javax.swing.JFileChooser;
 
-import FilesManagement.Products;
-import FilesManagement.Publish;
-import FilesManagement.Subscribe;
-import FilesManagement.TxtHandlerClass;
-import FilesManagement.Customer;
-import FilesManagement.Flight_Phase;
-import FilesManagement.xmlHandler;
+import FilesManagement.*;
 import factory.TestProcedure;
 import factory.TestProcedureFactory;
-import iterator.PublishIterator;
 import iterator.SubscribeIterator;
 
 public class FlightSimulation {
@@ -23,7 +15,8 @@ public class FlightSimulation {
 	static xmlHandler xmlReader;
 	static Customer customer = null;
 	static TxtHandlerClass txtReader;
-	static ArrayList<Flight_Phase> testObj;
+	static TestCase TestCase;
+	//static ArrayList<Flight_Phase> FlightPhases_Array;
 
 	public static void main(String[] args) throws FileNotFoundException{
 
@@ -46,9 +39,12 @@ public class FlightSimulation {
 
 					fileURL = fixedPath+"/"+file.getName();
 					txtReader = new TxtHandlerClass();
+					TestCase = new TestCase();
 					System.out.println("Simulating " + file.getName());
-					testObj = txtReader.txtReader(fileURL);
-					String pro_conf = txtReader.getProd_Config();
+					TestCase = txtReader.txtReader(fileURL);
+					//FlightPhases_Array = TestCase.getFlight_Phases();
+					//String pro_conf = txtReader.getProd_Config();
+					String pro_conf = TestCase.getProductConfiguration();
 					for (File file1 : listOfFiles) {
 
 						if (file1.isFile()&&(file1.getName().substring(file1.getName().lastIndexOf('.')+1).equals("xml"))) {
@@ -80,24 +76,31 @@ public class FlightSimulation {
 	}
 	public static void executeTest()
 	{
+		System.out.println("\nFlight type : " + TestCase.getFlightType());
+		System.out.println("Product Configuration : " + TestCase.getProductConfiguration());
+		System.out.println("Preflight: Latitude Change : " + TestCase.getPreflight().getPreflight_Latitude_Change());
+		System.out.println("Preflight: Longitude Change : " + TestCase.getPreflight().getPreflight_Longitude_Change());
+		System.out.println("Preflight: Weather : " + TestCase.getPreflight().getPreflight_Weather());
 		for(int index=0; index<customer.getAircraft().get(0).getProducts().size();index++)
 		{				
 			//Current product
 			Products productRepository = customer.getAircraft().get(0).getProducts().get(index);
-			System.out.println("\nProduct: "+ productRepository.getName());
-			for(int testIndex=0;testIndex<testObj.size();testIndex++){
+			System.out.println("\nProduct: "+ productRepository.getName());			
+			
+			for(int testIndex=0;testIndex<TestCase.getFlight_Phases().size();testIndex++){
 				//Creation of test factory according with the product name
 				TestProcedureFactory testFactory = new TestProcedureFactory();
 				TestProcedure test1 = testFactory.getResults(productRepository.getName());
 				//Compare product subscribe against flight parameter in test case file
-				System.out.println("Phase : " + testObj.get(testIndex).getPhase_Name());
+				System.out.println("Phase : " + TestCase.getFlight_Phases().get(testIndex).getPhase_Name());
+				System.out.println("Aircraft Maneuver : " + TestCase.getFlight_Phases().get(testIndex).getAircraft_Maneuver());
 				for(SubscribeIterator iter = productRepository.getSubscribeIterator(); iter.hasNext();){
 					Subscribe S = new Subscribe();
 					S = (Subscribe) iter.next();
 					Flight_Phase FP = new Flight_Phase();
 					//if the test case contains the specification value,it is evaluated
-					FP = testObj.get(testIndex);
-					test1.evaluate(S, FP);	
+					FP = TestCase.getFlight_Phases().get(testIndex);
+					test1.evaluate(S, FP);
 				}
 			} 
 		}			

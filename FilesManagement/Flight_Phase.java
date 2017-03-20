@@ -2,6 +2,8 @@ package FilesManagement;
 
 public class Flight_Phase {
 	private String Phase_Name = "";
+	//private String Flight_Type = "";
+	private String Aircraft_Maneuver = "";
 	private int Duration = 0;
 	private int VerticalSpeed = 0;
 	private int WindSpeed = 0;
@@ -60,4 +62,11 @@ public class Flight_Phase {
 		VerticalSpeed = verticalSpeed;
 	}
 
+	public String getAircraft_Maneuver() {
+		return Aircraft_Maneuver;
+	}
+
+	public void setAircraft_Maneuver(String aircraft_Maneuver) {
+		Aircraft_Maneuver = aircraft_Maneuver;
+	}
 }
