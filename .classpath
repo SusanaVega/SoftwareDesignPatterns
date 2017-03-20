@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path=""/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-<<<<<<< HEAD
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="lib" path="D:/Users/204069337/Documents/ACE/Material/23 Software pattern 2/Homework/Libraries/LegacyWeatherModule.jar"/>
-=======
-	<classpathentry kind="lib" path="D:/MyWork/Edison/SW_Patterns2/SW_Patterns2_Homework/SoftwareDesignPatterns/lib/LegacyWeatherModule.jar"/>
->>>>>>> 9d431fad0a6fd78ad6e0a3ab601870fb6411f378
-	<classpathentry kind="output" path=""/>
+	<classpathentry kind="output" path="bin"/>
 </classpath>
