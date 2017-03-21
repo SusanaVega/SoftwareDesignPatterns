@@ -9,8 +9,8 @@ public class TestProcedureEngine implements TestProcedure{
 	}
 
 	@Override
-	public void evaluate(Subscribe s, Flight_Phase f) {
-		System.out.println("\tTest not found for engines in any phase");
+	public String evaluate(Subscribe s, Flight_Phase f) {
+		return("\tTest not found for engines in any phase");
 	}
 
 }

@@ -83,36 +83,37 @@ public class TestProcedureFMS implements TestProcedure{
 	}
 
 	@Override
-	public void evaluate(Subscribe s, Flight_Phase f) {
+	public String evaluate(Subscribe s, Flight_Phase f) {
 		//Evaluate WindSpeed
 		switch(s.getName()){
 			case "WindSpeed":
 		if(f.getWindSpeed()<=s.getMax() && f.getWindSpeed()>=s.getMin()){
-			System.out.println("\tWindSpeed : " + f.getWindSpeed() + "[PASS]");}
+			return ("\tWindSpeed : " + f.getWindSpeed() + "[PASS]");}
 		else if (f.getWindSpeed()>s.getMax()){
-			System.out.println("\tWindSpeed : " + f.getWindSpeed() + "[FAIL] WindSpeed is over the max value");}
+			return("\tWindSpeed : " + f.getWindSpeed() + "[FAIL] WindSpeed is over the max value");}
 		else {
-			System.out.println("\tWindSpeed : " + f.getWindSpeed() + "[FAIL] WindSpeed is under the min value");}
-		break;
+			return("\tWindSpeed : " + f.getWindSpeed() + "[FAIL] WindSpeed is under the min value");}
+		
 		//Evaluate Duration
 			case "Duration":
 		if(f.getDuration()<=s.getMax() && f.getDuration()>=s.getMin()){
-			System.out.println("\tDuration : " + f.getDuration() + "[PASS]");}
+			return("\tDuration : " + f.getDuration() + "[PASS]");}
 		else if(f.getDuration()>s.getMax()){
-			System.out.println("\tDuration : " + f.getDuration() + "[FAIL] Duration is over the max value");}
+			return("\tDuration : " + f.getDuration() + "[FAIL] Duration is over the max value");}
 		else {
-			System.out.println("\tDuration : " + f.getDuration() + "[FAIL] Duration is under the min value");}
-		break;
+			return("\tDuration : " + f.getDuration() + "[FAIL] Duration is under the min value");}
+		
 		//Evaluate Vertical Speed
 			case "VerticalSpeed":
 		if(f.getVerticalSpeed()<=s.getMax() && f.getVerticalSpeed()>=s.getMin()){
-			System.out.println("\tVerticalSpeed : " + f.getVerticalSpeed() + "[PASS]");}
+			return("\tVerticalSpeed : " + f.getVerticalSpeed() + "[PASS]");}
 		else if(f.getVerticalSpeed()>s.getMax()){
-			System.out.println("\tVerticalSpeed : " + f.getVerticalSpeed() + "[FAIL] VerticalSpeed is over the max value");}
+			return("\tVerticalSpeed : " + f.getVerticalSpeed() + "[FAIL] VerticalSpeed is over the max value");}
 		else{
-			System.out.println("\tVerticalSpeed : " + f.getVerticalSpeed() + "[FAIL] VerticalSpeed is under the min value");}
-		break;
+			return("\tVerticalSpeed : " + f.getVerticalSpeed() + "[FAIL] VerticalSpeed is under the min value");}
+		
 		}
+		return null;
 		
 	}
 

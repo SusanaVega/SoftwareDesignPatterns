@@ -28,15 +28,25 @@ public class TestProcedureGPS implements TestProcedure{
 	}
 
 	@Override
-	public void evaluate(Subscribe s, Flight_Phase f) {
+	public String evaluate(Subscribe s, Flight_Phase f) {
+		switch(s.getName()){
+			case "Longitude_Change":
 		if(f.getLongitude_Change()<=s.getMax() && f.getLongitude_Change()>=s.getMin()){
-			System.out.println("\tLongitude_Change : " + f.getLongitude_Change() + "[PASS]");}
-		else{
-			System.out.println("\tLongitude_Change : " + f.getLongitude_Change() + "[FAIL]");}
+			return("\tLongitude_Change : " + f.getLongitude_Change() + "[PASS]");}
+		else if (f.getLongitude_Change()>s.getMax()){
+			return("\tLongitude_Change : " + f.getWindSpeed() + "[FAIL] Longitude change is over the max value");}
+		else {
+			return("\tLongitude_Change : " + f.getWindSpeed() + "[FAIL] Longitude change is under the min value");}
+			case  "Latitude_Change":
 		if(f.getLatitude_Change()<=s.getMax() && f.getLatitude_Change()>=s.getMin()){
-			System.out.println("\tLatitude_Change : " + f.getLatitude_Change() + "[PASS]");}
-		else{
-			System.out.println("\tLatitude_Change : " + f.getLatitude_Change() + "[FAIL]");}
+			return("\tLatitude_Change : " + f.getLongitude_Change() + "[PASS]");}
+		else if (f.getLongitude_Change()>s.getMax()){
+			return("\tLatitude_Change : " + f.getWindSpeed() + "[FAIL] Latitude change is over the max value");}
+		else {
+			return("\tLatitude_Change : " + f.getWindSpeed() + "[FAIL] Latitude change is under the min value");}
+		}
+		return null;
+		
 	}
 
 }

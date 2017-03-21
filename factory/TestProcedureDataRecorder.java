@@ -8,15 +8,14 @@ public class TestProcedureDataRecorder implements TestProcedure{
 	private int DataRate= 0;
 
 	@Override
-	public void evaluate(Subscribe s, Flight_Phase f) {
-		if(f.getLongitude_Change()<=s.getMax() && f.getLongitude_Change()>=s.getMin()){
-			System.out.println("\tData rate : " + f.getLongitude_Change() + "[PASS]");}
-		else{
-			System.out.println("\tLongitude_Change : " + f.getLongitude_Change() + "[FAIL]");}
-		if(f.getLatitude_Change()<=s.getMax() && f.getLatitude_Change()>=s.getMin()){
-			System.out.println("\tLatitude_Change : " + f.getLatitude_Change() + "[PASS]");}
-		else{
-			System.out.println("\tLatitude_Change : " + f.getLatitude_Change() + "[FAIL]");}
+	public String evaluate(Subscribe s, Flight_Phase f) {
+
+		if(getDataRate()<=s.getMax() && getDataRate()>=s.getMin()){
+			return("\tData rate : " + f.getLongitude_Change() + "[PASS]");}
+		else if (f.getLongitude_Change()>s.getMax()){
+			return("\tData rate : " + f.getWindSpeed() + "[FAIL] Data rate is over the max value");}
+		else {
+			return("\tData rate : " + f.getWindSpeed() + "[FAIL] Data rate is under the min value");}
 		
 	}
 
